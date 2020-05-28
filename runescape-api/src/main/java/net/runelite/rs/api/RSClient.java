@@ -1260,4 +1260,10 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("stopTimeMs")
 	void setStopTimeMs(long time);
+
+	@Import("clearLoginScreen")
+	void clearLoginScreen(boolean shouldClear);
+
+	@Import("leftTitleSprite")
+	void loginBackground(Sprite background);
 }

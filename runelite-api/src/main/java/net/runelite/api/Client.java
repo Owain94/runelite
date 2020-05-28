@@ -2030,9 +2030,11 @@ public interface Client extends GameShell
 	 * it won't get mirrored to the other side of the screen
 	 */
 	void setLoginScreen(Sprite pixels);
+	Sprite getLoginScreen();
 
 	/**
 	 * Sets whether the flames on the login screen should be rendered
 	 */
+	boolean shouldRenderLoginScreenFire();
 	void setShouldRenderLoginScreenFire(boolean val);
 }
