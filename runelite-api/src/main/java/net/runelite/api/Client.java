@@ -144,7 +144,7 @@ public interface Client extends GameShell
 
 	/**
 	 * Causes the client to shutdown. It is faster than
-	 * {@link java.applet.Applet#stop()} because it doesn't wait for 4000ms.
+	 * {@link javax.swing.JApplet#stop()} because it doesn't wait for 4000ms.
 	 * This will call {@link System#exit} when it is done
 	 */
 	void stopNow();

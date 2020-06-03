@@ -28,13 +28,13 @@ package net.runelite.client.rs;
 
 import com.google.common.base.Strings;
 import com.google.common.io.ByteStreams;
-import java.applet.Applet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Map;
 import java.util.function.Supplier;
+import javax.swing.JApplet;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLite;
 import net.runelite.client.ui.RuneLiteSplashScreen;
@@ -42,7 +42,7 @@ import net.runelite.http.api.worlds.World;
 import okhttp3.HttpUrl;
 
 @Slf4j
-public class ClientLoader implements Supplier<Applet>
+public class ClientLoader implements Supplier<JApplet>
 {
 	private static final String CONFIG_URL = "http://oldschool.runescape.com/jav_config.ws";
 	private static final String BACKUP_CONFIG_URL = "https://raw.githubusercontent.com/open-osrs/hosting/master/jav_config.ws";
@@ -59,7 +59,7 @@ public class ClientLoader implements Supplier<Applet>
 		this.updateCheckMode = updateCheckMode;
 	}
 
-	private static Applet loadRLPlus(final RSConfig config)
+	private static JApplet loadRLPlus(final RSConfig config)
 		throws ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		RuneLiteSplashScreen.stage(.465, "Starting Open Old School RuneScape");
@@ -93,7 +93,7 @@ public class ClientLoader implements Supplier<Applet>
 		return loadFromClass(config, clientClass);
 	}
 
-	private static Applet loadVanilla(final RSConfig config)
+	private static JApplet loadVanilla(final RSConfig config)
 		throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException
 	{
 		RuneLiteSplashScreen.stage(.465, "Starting Vanilla Old School RuneScape");
@@ -110,16 +110,16 @@ public class ClientLoader implements Supplier<Applet>
 		return loadFromClass(config, clientClass);
 	}
 
-	private static Applet loadFromClass(final RSConfig config, final Class<?> clientClass)
+	private static JApplet loadFromClass(final RSConfig config, final Class<?> clientClass)
 		throws IllegalAccessException, InstantiationException
 	{
-		final Applet rs = (Applet) clientClass.newInstance();
+		final JApplet rs = (JApplet) clientClass.newInstance();
 		rs.setStub(new RSAppletStub(config));
 		return rs;
 	}
 
 	@Override
-	public synchronized Applet get()
+	public synchronized JApplet get()
 	{
 		if (client == null)
 		{
@@ -130,7 +130,7 @@ public class ClientLoader implements Supplier<Applet>
 		{
 			throw new RuntimeException((Throwable) client);
 		}
-		return (Applet) client;
+		return (JApplet) client;
 	}
 
 	private Object doLoad()

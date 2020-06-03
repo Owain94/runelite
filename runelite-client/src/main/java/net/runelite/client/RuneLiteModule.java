@@ -27,13 +27,13 @@ package net.runelite.client;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
-import java.applet.Applet;
 import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 import javax.inject.Singleton;
+import javax.swing.JApplet;
 import net.runelite.api.Client;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.client.account.SessionManager;
@@ -61,10 +61,10 @@ public class RuneLiteModule extends AbstractModule
 {
 	private static final int MAX_OKHTTP_CACHE_SIZE = 20 * 1024 * 1024; // 20mb
 
-	private final Supplier<Applet> clientLoader;
+	private final Supplier<JApplet> clientLoader;
 	private final File config;
 
-	public RuneLiteModule(final Supplier<Applet> clientLoader, File config)
+	public RuneLiteModule(final Supplier<JApplet> clientLoader, File config)
 	{
 		this.clientLoader = clientLoader;
 		this.config = config;
@@ -101,14 +101,14 @@ public class RuneLiteModule extends AbstractModule
 
 	@Provides
 	@Singleton
-	Applet provideApplet()
+	JApplet provideApplet()
 	{
 		return clientLoader.get();
 	}
 
 	@Provides
 	@Singleton
-	Client provideClient(@Nullable Applet applet)
+	Client provideClient(@Nullable JApplet applet)
 	{
 		return applet instanceof Client ? (Client) applet : null;
 	}

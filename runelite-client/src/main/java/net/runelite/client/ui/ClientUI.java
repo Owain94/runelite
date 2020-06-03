@@ -25,7 +25,6 @@
 package net.runelite.client.ui;
 
 import com.google.common.base.Strings;
-import java.applet.Applet;
 import java.awt.Canvas;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -57,6 +56,7 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -132,7 +132,7 @@ public class ClientUI
 	private final RuneLiteConfig config;
 	private final KeyManager keyManager;
 	private final MouseManager mouseManager;
-	private final Applet client;
+	private final JApplet client;
 	private final ConfigManager configManager;
 	private final Provider<ClientThread> clientThreadProvider;
 	private final EventBus eventBus;
@@ -159,7 +159,7 @@ public class ClientUI
 		RuneLiteConfig config,
 		KeyManager keyManager,
 		MouseManager mouseManager,
-		@Nullable Applet client,
+		@Nullable JApplet client,
 		ConfigManager configManager,
 		Provider<ClientThread> clientThreadProvider,
 		EventBus eventbus)

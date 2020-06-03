@@ -49,6 +49,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.UUID;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import javax.annotation.Nullable;
 import javax.inject.Provider;
 import javax.inject.Singleton;
@@ -108,7 +110,7 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 @Slf4j
-public class RuneLite
+public class RuneLite extends Application
 {
 	public static final String SYSTEM_VERSION = "0.0.1";
 
@@ -230,8 +232,17 @@ public class RuneLite
 	@Inject
 	private Scheduler scheduler;
 
-	public static void main(String[] args) throws Exception
+	public static void main(String[] args)
 	{
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception
+	{
+		primaryStage.setTitle("My First JavaFX App");
+		primaryStage.show();
+
 		Locale.setDefault(Locale.ENGLISH);
 
 		final OptionParser parser = new OptionParser();
@@ -269,7 +280,7 @@ public class RuneLite
 
 		try
 		{
-			options = parser.parse(args);
+			options = parser.parse(getParameters().getRaw().toArray(new String[0]));
 		}
 		catch (OptionException e)
 		{

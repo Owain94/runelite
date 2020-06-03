@@ -30,12 +30,19 @@ import java.util.Date
 plugins {
     id("com.github.johnrengelman.shadow") version "5.2.0"
     java
+    id("org.openjfx.javafxplugin") version "0.0.8"
 }
 
 
 apply<BootstrapPlugin>()
 
 description = "RuneLite Client"
+
+javafx {
+    version = "14.0.1"
+    modules("javafx.controls", "javafx.graphics")
+    configuration = "compileOnly"
+}
 
 dependencies {
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.12")
@@ -75,6 +82,16 @@ dependencies {
     implementation(group = "org.pf4j", name = "pf4j-update", version = "2.3.0")
     implementation(project(":http-api"))
 
+    runtimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "linux")
+    runtimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "mac")
+    runtimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "win")
+    runtimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "win")
+    runtimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "linux")
+    runtimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "mac")
+    runtimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "win")
+    runtimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "linux")
+    runtimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "mac")
+
     runtimeOnly(group = "org.pushing-pixels", name = "radiance-trident", version = "2.5.1")
     runtimeOnly(project(":injected-client"))
     runtimeOnly(project(":runescape-api"))
@@ -91,6 +108,16 @@ dependencies {
     testImplementation(group = "org.mockito", name = "mockito-inline", version = "3.3.3")
     testImplementation(group = "com.squareup.okhttp3", name = "mockwebserver", version = "4.7.2")
     testImplementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.30")
+
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "linux")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "mac")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-base", version = "14.0.1", classifier = "win")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "win")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "linux")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-graphics", version = "14.0.1", classifier = "mac")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "win")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "linux")
+    testRuntimeOnly(group = "org.openjfx", name = "javafx-controls", version = "14.0.1", classifier = "mac")
 }
 
 fun formatDate(date: Date?) = with(date ?: Date()) {

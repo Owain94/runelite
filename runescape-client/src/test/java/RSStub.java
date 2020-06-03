@@ -23,19 +23,19 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import java.applet.Applet;
 import java.applet.AppletContext;
 import java.applet.AppletStub;
 import java.awt.Dimension;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.swing.JApplet;
 
 public class RSStub implements AppletStub
 {
 	private final ConfigLoader config;
-	private final Applet app;
+	private final JApplet app;
 
-	public RSStub(ConfigLoader config, Applet app)
+	public RSStub(ConfigLoader config, JApplet app)
 	{
 		this.config = config;
 		this.app = app;
